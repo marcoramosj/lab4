@@ -28,7 +28,7 @@ const data = [
     sala: "Sala B",
     fecha: "2026-03-06",
     horaInicio: "12:00",
-    horaFin: "13:30",
+    horaFin: "13:00",
     motivo: "Entrevista",
   },
   {
@@ -38,7 +38,7 @@ const data = [
     fecha: "2026-03-07",
     horaInicio: "09:00",
     horaFin: "10:00",
-    motivo: "Demo con cliente",
+    motivo: "Demo cliente",
   },
 ];
 
@@ -116,7 +116,7 @@ class Accenture extends React.Component {
         return null;
       });
 
-      this.setState({ data: arreglo, modalActualizar: false });
+      this.setState({ data: arreglo });
     }
   };
 
@@ -142,16 +142,39 @@ class Accenture extends React.Component {
   render() {
     return (
       <>
-        <Container>
-          <br />
-          <Button color="success" onClick={() => this.mostrarModalInsertar()}>
-            Crear Reserva
-          </Button>
-          <br />
-          <br />
+        <Container style={{ marginTop: "40px" }}>
+          <h2 style={{ marginBottom: "25px", fontWeight: "700", color: "#5a2ea6" }}>
+            Sistema de Reservas Accenture
+          </h2>
 
-          <Table>
-            <thead>
+          <Button
+            color="success"
+            size="lg"
+            style={{ marginBottom: "20px" }}
+            onClick={() => this.mostrarModalInsertar()}
+          >
+            Nueva Reserva
+          </Button>
+
+          <Table
+            striped
+            bordered
+            hover
+            responsive
+            style={{
+              background: "white",
+              borderRadius: "12px",
+              overflow: "hidden",
+              boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+            }}
+          >
+            <thead
+              style={{
+                background: "linear-gradient(90deg,#6a11cb,#2575fc)",
+                color: "white",
+                fontWeight: "bold",
+              }}
+            >
               <tr>
                 <th>ID</th>
                 <th>Solicitante</th>
@@ -176,12 +199,17 @@ class Accenture extends React.Component {
                   <td>{dato.motivo}</td>
                   <td>
                     <Button
-                      color="primary"
+                      color="info"
+                      size="sm"
                       onClick={() => this.mostrarModalActualizar(dato)}
                     >
                       Editar
                     </Button>{" "}
-                    <Button color="danger" onClick={() => this.eliminar(dato)}>
+                    <Button
+                      color="danger"
+                      size="sm"
+                      onClick={() => this.eliminar(dato)}
+                    >
                       Eliminar
                     </Button>
                   </td>
@@ -193,77 +221,73 @@ class Accenture extends React.Component {
           <Modal isOpen={this.state.modalInsertar}>
             <ModalHeader>
               <div>
-                <h3>Crear Reserva</h3>
+                <h3>Nueva Reserva</h3>
               </div>
             </ModalHeader>
 
             <ModalBody>
               <FormGroup>
-                <label>ID:</label>
+                <label>ID</label>
                 <input
                   className="form-control"
                   readOnly
-                  type="text"
                   value={this.state.data.length + 1}
                 />
               </FormGroup>
 
               <FormGroup>
-                <label>Solicitante:</label>
+                <label>Solicitante</label>
                 <input
                   className="form-control"
                   name="solicitante"
-                  type="text"
                   onChange={this.handleChange}
                 />
               </FormGroup>
 
               <FormGroup>
-                <label>Sala:</label>
+                <label>Sala</label>
                 <input
                   className="form-control"
                   name="sala"
-                  type="text"
                   onChange={this.handleChange}
                 />
               </FormGroup>
 
               <FormGroup>
-                <label>Fecha:</label>
+                <label>Fecha</label>
                 <input
+                  type="date"
                   className="form-control"
                   name="fecha"
-                  type="date"
                   onChange={this.handleChange}
                 />
               </FormGroup>
 
               <FormGroup>
-                <label>Hora inicio:</label>
+                <label>Hora inicio</label>
                 <input
+                  type="time"
                   className="form-control"
                   name="horaInicio"
-                  type="time"
                   onChange={this.handleChange}
                 />
               </FormGroup>
 
               <FormGroup>
-                <label>Hora fin:</label>
+                <label>Hora fin</label>
                 <input
+                  type="time"
                   className="form-control"
                   name="horaFin"
-                  type="time"
                   onChange={this.handleChange}
                 />
               </FormGroup>
 
               <FormGroup>
-                <label>Motivo:</label>
+                <label>Motivo</label>
                 <input
                   className="form-control"
                   name="motivo"
-                  type="text"
                   onChange={this.handleChange}
                 />
               </FormGroup>
@@ -273,10 +297,7 @@ class Accenture extends React.Component {
               <Button color="primary" onClick={() => this.insertar()}>
                 Insertar
               </Button>
-              <Button
-                color="danger"
-                onClick={() => this.cerrarModalInsertar()}
-              >
+              <Button color="danger" onClick={() => this.cerrarModalInsertar()}>
                 Cancelar
               </Button>
             </ModalFooter>
@@ -291,76 +312,72 @@ class Accenture extends React.Component {
 
             <ModalBody>
               <FormGroup>
-                <label>ID:</label>
+                <label>ID</label>
                 <input
                   className="form-control"
                   readOnly
-                  type="text"
                   value={this.state.form.id}
                 />
               </FormGroup>
 
               <FormGroup>
-                <label>Solicitante:</label>
+                <label>Solicitante</label>
                 <input
                   className="form-control"
                   name="solicitante"
-                  type="text"
                   onChange={this.handleChange}
                   value={this.state.form.solicitante}
                 />
               </FormGroup>
 
               <FormGroup>
-                <label>Sala:</label>
+                <label>Sala</label>
                 <input
                   className="form-control"
                   name="sala"
-                  type="text"
                   onChange={this.handleChange}
                   value={this.state.form.sala}
                 />
               </FormGroup>
 
               <FormGroup>
-                <label>Fecha:</label>
+                <label>Fecha</label>
                 <input
+                  type="date"
                   className="form-control"
                   name="fecha"
-                  type="date"
                   onChange={this.handleChange}
                   value={this.state.form.fecha}
                 />
               </FormGroup>
 
               <FormGroup>
-                <label>Hora inicio:</label>
+                <label>Hora inicio</label>
                 <input
+                  type="time"
                   className="form-control"
                   name="horaInicio"
-                  type="time"
                   onChange={this.handleChange}
                   value={this.state.form.horaInicio}
                 />
               </FormGroup>
 
               <FormGroup>
-                <label>Hora fin:</label>
+                <label>Hora fin</label>
                 <input
+                  type="time"
                   className="form-control"
                   name="horaFin"
-                  type="time"
                   onChange={this.handleChange}
                   value={this.state.form.horaFin}
                 />
               </FormGroup>
 
               <FormGroup>
-                <label>Motivo:</label>
+                <label>Motivo</label>
                 <input
                   className="form-control"
                   name="motivo"
-                  type="text"
                   onChange={this.handleChange}
                   value={this.state.form.motivo}
                 />
@@ -368,16 +385,10 @@ class Accenture extends React.Component {
             </ModalBody>
 
             <ModalFooter>
-              <Button
-                color="primary"
-                onClick={() => this.editar(this.state.form)}
-              >
+              <Button color="primary" onClick={() => this.editar(this.state.form)}>
                 Editar
               </Button>
-              <Button
-                color="danger"
-                onClick={() => this.cerrarModalActualizar()}
-              >
+              <Button color="danger" onClick={() => this.cerrarModalActualizar()}>
                 Cancelar
               </Button>
             </ModalFooter>
